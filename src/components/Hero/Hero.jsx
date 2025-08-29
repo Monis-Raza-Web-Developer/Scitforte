@@ -147,10 +147,10 @@ const Hero = ({
 
      <section className='relative  grid grid-cols-2 items-center '>
 <div className=' flex  justify-end'><img src="./hero4.png" alt="" /></div>
-<div className='text-white w-[80%]'>
+<div className=' '>
 
-  <h1 className='text-7xl leading-9'><span className='text-blue-950 '>Innovative.</span> Create. Excel.</h1>
-  <p className='pt-10 tracking-wider'>We are on a mission to revolutionize the digital landscape with cutting-edge software solutions that empower businesses and individuals alike.</p>
+  <h1 className='text-6xl font-mono  font-semibold '>Scitforte Pioneering Tomorrow's Solutions</h1>
+  <p className='pt-10 tracking-wider text-xl w-[80%]'>We are on a mission to revolutionize the digital landscape with cutting-edge software solutions that empower businesses and individuals alike.</p>
 </div>
 
      </section>

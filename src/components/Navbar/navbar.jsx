@@ -8,7 +8,7 @@ const Navbar = () => {
             <img src="./logo.png" width={200} alt="" />
         </div>
         <div className=''>
-<ul className='flex gap-10 text-lg font-medium text-white'>
+<ul className='flex gap-10 text-lg font-medium '>
     <li>Home</li>
     <li>Products</li>
     <li>About</li>

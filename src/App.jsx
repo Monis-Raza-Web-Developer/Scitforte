@@ -11,7 +11,7 @@ const App = () => {
     <>
     <div className='h-screen w-full'>
      <Hero
-  color={[0.4, 0.4, 1]}
+  color={[0, 1, 1]}
   mouseReact={false}
   amplitude={0.1}
   speed={1.0}
