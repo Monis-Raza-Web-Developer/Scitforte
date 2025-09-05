@@ -1,23 +1,11 @@
 import React from 'react'
+import Stack from './Stack'
+import Small from '../Navbar/Small'
 
-import Stack from './Stack';
-import Navbar from '../Navbar/Navbar.jsx';
-
-
-
-
-const Hero = (
-  
-) => {
-  
+const Heroes = () => {
   return (
-    <> 
-
-   
-  
-  
-
- <div className="relative h-screen w-full ">
+    <>
+      <div className="relative h-screen w-full ">
       {/* Background Video */}
       <video
         src="/homeweb1.mp4"
@@ -27,7 +15,7 @@ const Hero = (
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover "
       ></video>
-<Navbar/>
+<Small/>
 
  <div className='flex flex-col justify-center top-1/2 -translate-y-1/2 text-center relative '>
   <div>
@@ -70,12 +58,9 @@ Scitforte Pioneering Tomorrow's Solutions</h1>
   <img src="./promote2.png" height={10} width={400} alt="" />
 </div>
 </div>
-</section>
-     
-  
-
+</section> 
     </>
   )
 }
 
-export default Hero
+export default Heroes

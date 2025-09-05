@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Navbar = () => {
+const Small = () => {
   return (
     <>
-      <div className='relative flex justify-between items-center md:px-10 px-5 py-5 '>
+     <div className='relative flex justify-between items-center md:px-10 px-5 py-5 '>
         <div>
             <img src="./logo.png" className='md:w-[150px] w-[100px]' alt="" />
         </div>
@@ -18,11 +18,9 @@ const Navbar = () => {
 
         </div>
         
-      </div>
-
-
+      </div> 
     </>
   )
 }
 
-export default Navbar
+export default Small
