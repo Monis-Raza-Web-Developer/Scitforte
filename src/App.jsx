@@ -3,7 +3,7 @@ import { Building2, Home, Hospital, Leaf, Layers, Factory } from "lucide-react";
 import "remixicon/fonts/remixicon.css";
 import 'aos/dist/aos.css';
 
-import Hero from './components/Hero/Hero'
+import Hero from './components/Hero/Hero.jsx'
 import 'remixicon/fonts/remixicon.css'
 
 import Footer from './components/Footer/footer';
