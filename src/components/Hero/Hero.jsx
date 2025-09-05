@@ -1,160 +1,76 @@
 import React from 'react'
-import { motion } from "framer-motion";
-import { Renderer, Program, Mesh, Color, Triangle } from "ogl";
-import { useEffect, useRef } from "react";
+
+import Stack from './Stack';
 import Navbar from '../Navbar/Navbar';
 
 
-const vertexShader = `
-attribute vec2 uv;
-attribute vec2 position;
 
-varying vec2 vUv;
 
-void main() {
-  vUv = uv;
-  gl_Position = vec4(position, 0, 1);
-}
-`;
-
-const fragmentShader = `
-precision highp float;
-
-uniform float uTime;
-uniform vec3 uColor;
-uniform vec3 uResolution;
-uniform vec2 uMouse;
-uniform float uAmplitude;
-uniform float uSpeed;
-
-varying vec2 vUv;
-
-void main() {
-  float mr = min(uResolution.x, uResolution.y);
-  vec2 uv = (vUv.xy * 2.0 - 1.0) * uResolution.xy / mr;
-
-  uv += (uMouse - vec2(0.5)) * uAmplitude;
-
-  float d = -uTime * 0.5 * uSpeed;
-  float a = 0.0;
-  for (float i = 0.0; i < 8.0; ++i) {
-    a += cos(i - d - a * uv.x);
-    d += sin(uv.y * i + a);
-  }
-  d += uTime * 0.5 * uSpeed;
-  vec3 col = vec3(cos(uv * vec2(d, a)) * 0.6 + 0.4, cos(a + d) * 0.5 + 0.5);
-  col = cos(col * cos(vec3(d, a, 2.5)) * 0.5 + 0.5) * uColor;
-  gl_FragColor = vec4(col, 1.0);
-}
-`;
-
-const Hero = ({
-  color = [1, 1, 1],
-  speed = 1.0,
-  amplitude = 0.1,
-  mouseReact = true,
-  ...rest
-}) => {
-  const ctnDom = useRef(null);
-  const mousePos = useRef({ x: 0.5, y: 0.5 });
-
-  useEffect(() => {
-    if (!ctnDom.current) return;
-    const ctn = ctnDom.current;
-    const renderer = new Renderer();
-    const gl = renderer.gl;
-    gl.clearColor(1, 1, 1, 1);
-
-    let program;
-
-    function resize() {
-      const scale = 1;
-      renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
-      if (program) {
-        program.uniforms.uResolution.value = new Color(
-          gl.canvas.width,
-          gl.canvas.height,
-          gl.canvas.width / gl.canvas.height
-        );
-      }
-    }
-    window.addEventListener("resize", resize, false);
-    resize();
-
-    const geometry = new Triangle(gl);
-    program = new Program(gl, {
-      vertex: vertexShader,
-      fragment: fragmentShader,
-      uniforms: {
-        uTime: { value: 0 },
-        uColor: { value: new Color(...color) },
-        uResolution: {
-          value: new Color(
-            gl.canvas.width,
-            gl.canvas.height,
-            gl.canvas.width / gl.canvas.height
-          ),
-        },
-        uMouse: { value: new Float32Array([mousePos.current.x, mousePos.current.y]) },
-        uAmplitude: { value: amplitude },
-        uSpeed: { value: speed },
-      },
-    });
-
-    const mesh = new Mesh(gl, { geometry, program });
-    let animateId;
-
-    function update(t) {
-      animateId = requestAnimationFrame(update);
-      program.uniforms.uTime.value = t * 0.001;
-      renderer.render({ scene: mesh });
-    }
-    animateId = requestAnimationFrame(update);
-    ctn.appendChild(gl.canvas);
-
-    function handleMouseMove(e) {
-      const rect = ctn.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = 1.0 - (e.clientY - rect.top) / rect.height;
-      mousePos.current = { x, y };
-      program.uniforms.uMouse.value[0] = x;
-      program.uniforms.uMouse.value[1] = y;
-    }
-    if (mouseReact) {
-      ctn.addEventListener("mousemove", handleMouseMove);
-    }
-
-    return () => {
-      cancelAnimationFrame(animateId);
-      window.removeEventListener("resize", resize);
-      if (mouseReact) {
-        ctn.removeEventListener("mousemove", handleMouseMove);
-      }
-      ctn.removeChild(gl.canvas);
-      gl.getExtension("WEBGL_lose_context")?.loseContext();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [color, speed, amplitude, mouseReact]);
-     
+const Hero = (
+  
+) => {
+  
   return (
-    <> <div
-      ref={ctnDom}
-      className="w-full h-full absolute"
-      {...rest}
+    <> 
 
-    />
-     <Navbar/> 
+   
+  
+  
 
-     <section className='relative  grid grid-cols-2 items-center '>
-<div className=' flex  justify-end'><img src="./hero4.png" alt="" /></div>
-<div className=' '>
+ <div className="relative h-screen w-full ">
+      {/* Background Video */}
+      <video
+        src="/homeweb1.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover "
+      ></video>
+<Navbar/>
 
-  <h1 className='text-6xl font-mono  font-semibold '>Scitforte Pioneering Tomorrow's Solutions</h1>
-  <p className='pt-10 tracking-wider text-xl w-[80%]'>We are on a mission to revolutionize the digital landscape with cutting-edge software solutions that empower businesses and individuals alike.</p>
+ <div className='flex flex-col justify-center top-1/2 -translate-y-1/2 text-center relative '>
+  <div>
+<h1 className='md:text-4xl text-2xl  text-blue-900   font-mono font-bold   pb-4  px-2' style={{  fontFamily: "Kanit, sans-serif" }}>
+Scitforte Pioneering Tomorrow's Solutions</h1>
+<p className=' md:px-20 px-3 md:text-lg text-sm'>We are on a mission to revolutionize the digital landscape with <span className='font-bold'>  cutting-edge software solutions</span> that empower businesses and individuals alike.</p>
+
+  </div>
+  <div className='flex justify-center items-center '>
+    <img src="hero5.png" alt="" />
+  </div>
+ </div>
+
+ <div className='absolute bg-white/50   w-[80%] md:h-[30%] h-[50%] md:top-[90%] top-[85%] left-1/2 -translate-x-1/2 rounded-4xl backdrop-blur-3xl shadow-2xl grid md:grid-cols-3 grid-cols-1  items-center text-center'>
+  <div className='text-center'><h1 className='md:text-4xl text-3xl' >$850m+</h1>
+  <p className=' md:text-lg text-sm'>Portfolio value generated</p></div>
+  <div>
+    <h1 className='md:text-4xl text-3xl'>150m+</h1>
+  <p  className=' md:text-lg text-sm'>Countries service</p>
+  </div>
+  <div>
+    <h1 className='md:text-4xl text-3xl'>1000+</h1>
+  <p  className=' md:text-lg text-sm'>Direct Jobs Created</p>
+  </div>
+ </div>
+     </div>
+    
+  
+
+
+<Stack/>
+
+<section className='mt-10'>
+<div className=' grid text-white grid-cols-2 bg-gradient-to-l  from-blue-600 via-purple-600 to-purple-900'>
+<div className='px-20 pt-10'>
+  <p className='text-5xl font-black '>Promote your Business through our Expertise</p>
+  <p className='text-lg pt-20'>Our experienced team is ready to collaborate with you, bringing our innovative spirit, technical expertise, and unwavering commitment to excellence to your project</p>
 </div>
-
-     </section>
-
+<div className='pt-20'>
+  <img src="./promote2.png" height={10} width={400} alt="" />
+</div>
+</div>
+</section>
      
   
 
