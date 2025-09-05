@@ -3,11 +3,12 @@ import { Building2, Home, Hospital, Leaf, Layers, Factory } from "lucide-react";
 import "remixicon/fonts/remixicon.css";
 import 'aos/dist/aos.css';
 
-import Hero from './components/Hero/Hero.jsx'
+
 import 'remixicon/fonts/remixicon.css'
 
 import Footer from './components/Footer/footer';
 import AOS from 'aos';
+import Heroes from './components/Hero/Heroes';
 
 const App = () => {
   const directions = ['fade-up', 'fade-down', 'fade-left', 'fade-right', 'zoom-in', 'zoom-out']; 
@@ -47,9 +48,9 @@ const products = [
   return (
     <>
      { AOS.init()}
-   <Hero/>
-  
  
+  
+ <Heroes/>
 
    <section
       id="products"
