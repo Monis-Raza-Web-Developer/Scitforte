@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Stack from './Stack';
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../Navbar/Navbar.jsx';
 
 
 
