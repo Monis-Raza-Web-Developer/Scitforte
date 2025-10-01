@@ -213,7 +213,7 @@ Innovating Business, Empowering Growth</h1>
            <ul className='list-disc text-[13px] pt-5 px-2'>
             {d.p.map((i,index) =>(
 
-            <li >{i}</li>
+            <li key={index}>{i}</li>
            ))}
           </ul>
         </div>

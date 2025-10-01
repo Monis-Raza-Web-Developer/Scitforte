@@ -5,3 +5,10 @@
 *{
      font-family: "Poppins", sans-serif;
 }
+.custom-swiper .swiper-wrapper {
+  overflow: visible !important;
+}
+
+.custom-swiper .swiper-slide {
+  overflow: visible !important;
+}
